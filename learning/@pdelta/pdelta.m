@@ -45,10 +45,10 @@ this.train_wopt_comment  = '1: use weights where the min. err. on the train set 
 
 [pathstr,name,ext,versn] = fileparts(mfilename);
 if nargin == 0
-  this = class(this,this.name);
+  this = struct(this);
 elseif isa(varargin{1},this.name)
   this = varargin{1};
 else
-  this = class(this,this.name);
-  this = set(this,varargin{:});
+  this = struct(this);
+  this = sot(this,varargin{:});
 end

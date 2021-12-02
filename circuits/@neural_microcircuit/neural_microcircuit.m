@@ -55,11 +55,11 @@ csim('set','spikeOutput',0);
 
 [pathstr,name,ext,versn] = fileparts(mfilename);
 if nargin == 0
-  this = class(this,name);
+  this = struct(default_parameters(this));
 elseif isa(varargin{1},name)
   this = varargin{1};
 else
-  this = class(this,name);
-  this = set(this,varargin{:});
+  this = struct(default_parameters(this));
+  this = sot(this,varargin{:});
 end
 
