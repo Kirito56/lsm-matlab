@@ -1,6 +1,9 @@
 function [this,mae,mse,cc,score]=train(this,stimuli,dataType,x_data,varargin)
 
-if strcmp('precalcstates',lowerclean(dataType))
+if strmatch('precalcstates',lowerclean(dataType))
+%   fprintf('x_data is %4i\n',vertcat(x_data(:).X));
+% ts = x_data;
+  
   ts.X = vertcat(x_data(:).X);
 
   if ischar(this.subset)
@@ -26,6 +29,25 @@ if strcmp('precalcstates',lowerclean(dataType))
   verbose(0,'calculating target functions ...');
   f(length(stimuli)).y = [];
   for i=1:length(stimuli)
+%       fprintf('i = %4i\n target = %4i\n',i,this{1}.targetFuction)
+%     cd('C:\neural\lsm\learning\segment_classification');
+    TvROOT = '';
+    st=which(this.targetFunction.name);
+    if isempty(TvROOT)
+        str = sprintf('%s.m',this.targetFunction.name);
+        TvROOT=st(1:strfind(st,str)-1);
+    end
+    if isempty(TvROOT)
+        str = sprintf('%s.m',this.targetFunction.name);
+        TvROOT=st(1:strfind(st,str)-1);
+    end
+    cd(TvROOT);
+    cw=pwd;
+    clear TvROOT
+    global TvROOT
+    clear global TvROOT
+    TvROOT=pwd;
+    cd(cw);
     f(i).y = target_values(this.targetFunction,stimuli(i),x_data(i).t);
   end
   verbose(0,'\b\b\b\b. Done.\n');
@@ -34,7 +56,7 @@ if strcmp('precalcstates',lowerclean(dataType))
 
   this.preprocess.P = [];
   if ~isempty(this.Vpca)
-    if this.Vpca <=1 & this.Vpca >=0
+    if this.Vpca <=1 && this.Vpca >=0
       d = size(ts.X,2);
       verbose(0,'applying pca transformation ...');
       [ts.X,this.preprocess.P]=calc_pca(ts.X,this.Vpca);
@@ -69,17 +91,18 @@ if strcmp('precalcstates',lowerclean(dataType))
 
   this.preprocess.a = 1;
   this.preprocess.b = 0;
-  range = get(this.algorithm,'range');
+  range = got(this.algorithm,'range');
   if ~isempty(range)
-    verbose(0,'scaling target values into range [%g %g] ...',range(1),range(2));
+    verbose(0,'scaling target values into range [%g %g] ...\n',range(1),range(2));
     ii=find(~isnan(ts.Y));
     b=min(ts.Y(ii));
-    ts.Y = ts.Y-b;
+    fprintf('b = %i\n',b);
+     ts.Y = ts.Y-b;
     a=max(ts.Y(ii));
     if abs(a) < 1e-9
       error('all target values in the training set are equal (maxdiff=1e-9)!');
     end
-    ts.Y = ts.Y/a*diff(range)+range(1);
+    ts.Y = ts.Y/(a*diff(range)+range(1));
     this.preprocess.a = a;
     this.preprocess.b = b;
     verbose(0,'\b\b\b\b. Done.\n');
@@ -128,19 +151,41 @@ if strcmp('precalcstates',lowerclean(dataType))
       verbose(0,'\b\b\b\b. #neg/#pos = %g\n',length(i_neg)/length(i_pos));
     end
   end
-
+  
   verbose(0,'training with %s (%i data points of dimension %i) ...',class(this.algorithm),length(ts.Y),size(ts.X,2));
+%   dataType = [];
+%   [mae,mse,cc,score] = analyse(this.algorithm,ts);
+    TvROOT = '';
+    st=which(this.algorithm.name);
+    if isempty(TvROOT)
+        str = sprintf('%s.m',this.algorithm.name);
+        TvROOT=st(1:strfind(st,str)-1);
+    end
+    if isempty(TvROOT)
+        str = sprintf('%s.m',this.algorithm.name);
+        TvROOT=st(1:strfind(st,str)-1);
+    end
+    cd(TvROOT);
+    cw=pwd;
+    clear TvROOT
+    global TvROOT
+    clear global TvROOT
+    TvROOT=pwd;
+    cd(cw);
   this.algorithm = train(this.algorithm,ts);
   verbose(0,'\b\b\b\b. Done.\n');
- 
-  [mae,mse,cc,score] = analyse(this.algorithm,ts);
+    
+    [mae,mse,cc,score] = analyse(this.algorithm,ts);
+    verbose(0,'train performance: cc=%g, mae=%g, mse=%g, score=%g\n',cc,mae,mse,score);
 
-  % verbose(0,'train performance: cc=%g, mae=%g, mse=%g, score=%g\n',cc,mae,mse,score);
+  
 
 elseif strcmp('samplestates',lowerclean(dataType))
-
   states = feval(x_data,stimuli,varargin{:});
   
   this = train(this,stimuli,'precalc_states',states);
 end
+end
+
+
 
