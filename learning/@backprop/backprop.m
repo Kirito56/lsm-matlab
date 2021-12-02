@@ -33,10 +33,10 @@ this.public_properties = { 'valFrac' 'outActFun' 'nHidden' 'trainFun' 'maxEpochs
 
 [pathstr,name,ext,versn] = fileparts(mfilename);
 if nargin == 0
-  this = class(this,name);
+  this = struct(this);
 elseif isa(varargin{1},name)
   this = varargin{1};
 else
-  this = class(this,name);
-  this = set(this,varargin{:});
+  this = struct(this);
+  this = sot(this,varargin{:});
 end
