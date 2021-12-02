@@ -1,5 +1,11 @@
 # lsm-matlab(`CSIM`)
 
+* Для початку роботи в кого відсутній `Matlab R2018a`
+* [`Matlab R2018a Torrent`](https://github.com/Kirito56/lsm-matlab/blob/main/Instruction/Matlab_R2018a.torrent)
+* [![`Matlab R2018a Torrent`](https://i.ytimg.com/vi/kBO0Apxn0nE/hqdefault.jpg)](https://www.youtube.com/watch?v=kBO0Apxn0nE)
+* Виконання лабораторних робіт
+* Лабораторні робота №1 - 5
+
 1. Після запуску `Matlab` перейдіть в `Home  🡪 Set Path`(Знаходиться в верхньому вікні Matlab)
 ![`Set Path`](https://github.com/Kirito56/lsm-matlab/blob/main/Instruction/1.png)
 1. Далі добавте папки або запустіть файл install.m який знаходиться в папці `lsm\install.m`
