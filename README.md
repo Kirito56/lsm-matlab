@@ -15,9 +15,9 @@
 1. Змініть директорію на `lsm/csim/demos` і можете протестувати демонстраційні скрипти для початку. 
 
 ## Виправлення в коді
-* [`learning-fix`](https://github.com/Kirito56/lsm-matlab/pull/1)
-* [`external-readout-fix`](https://github.com/Kirito56/lsm-matlab/pull/2)
-* [`linear_regression-fix`](https://github.com/Kirito56/lsm-matlab/pull/3)
-* [`pdelta-fix`](https://github.com/Kirito56/lsm-matlab/pull/4)
-* [`segment_clasification-fix`](https://github.com/Kirito56/lsm-matlab/pull/5)
-* [`neural_microcircuit-fix`](https://github.com/Kirito56/lsm-matlab/pull/5)
+* [`learning-fix`](https://github.com/Kirito56/lsm-matlab/pull/1/files)
+* [`external-readout-fix`](https://github.com/Kirito56/lsm-matlab/pull/2/files)
+* [`linear_regression-fix`](https://github.com/Kirito56/lsm-matlab/pull/3/files)
+* [`pdelta-fix`](https://github.com/Kirito56/lsm-matlab/pull/4/files)
+* [`segment_clasification-fix`](https://github.com/Kirito56/lsm-matlab/pull/5/files)
+* [`neural_microcircuit-fix`](https://github.com/Kirito56/lsm-matlab/pull/6/files)
