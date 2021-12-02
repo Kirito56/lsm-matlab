@@ -13,3 +13,11 @@
 ![`MinGW-w64`](https://github.com/Kirito56/lsm-matlab/blob/main/Instruction/4.png)
 1. Запустіть Matlab і через командну строку введіть `cd 'C&D:/Папка з скачаним(lsm)/lsm'`
 1. Змініть директорію на `lsm/csim/demos` і можете протестувати демонстраційні скрипти для початку. 
+
+## Виправлення в коді
+* [`learning-fix`](https://github.com/Kirito56/lsm-matlab/pull/1)
+* [`external-readout-fix`](https://github.com/Kirito56/lsm-matlab/pull/2)
+* [`linear_regression-fix`](https://github.com/Kirito56/lsm-matlab/pull/3)
+* [`pdelta-fix`](https://github.com/Kirito56/lsm-matlab/pull/4)
+* [`segment_clasification-fix`](https://github.com/Kirito56/lsm-matlab/pull/5)
+* [`neural_microcircuit-fix`](https://github.com/Kirito56/lsm-matlab/pull/5)
